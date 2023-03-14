@@ -96,6 +96,11 @@
 		"menus": {
 			"view/title": [
 				{
+					"command": "jsonOutline.assignLabel",
+					"when": "view == jsonOutline",
+					"group": "navigation"
+				},
+				{
 					"command": "jsonOutline.refresh",
 					"when": "view == jsonOutline",
 					"group": "navigation"
@@ -133,6 +138,14 @@
 			{
 				"command": "jsonOutline.renameNode",
 				"title": "Rename"
+			},
+			{
+				"command": "jsonOutline.assignLabel",
+				"title": "Assign Label",
+				"icon": {
+					"light": "./resources/light/assignLabel.svg",
+					"dark": "./resources/dark/assignLabel.svg"
+				}
 			}
 		],
 		"languages": [
