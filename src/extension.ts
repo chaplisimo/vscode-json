@@ -11,4 +11,6 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.commands.registerCommand('jsonOutline.renameNode', offset => jsonOutlineProvider.rename(offset));
 	vscode.commands.registerCommand('extension.openJsonSelection', range => jsonOutlineProvider.select(range));
 	vscode.commands.registerCommand('jsonOutline.assignLabel', () => jsonOutlineProvider.assignLabel());
+	vscode.commands.registerCommand('jsonOutline.lockEditor', () => jsonOutlineProvider.lockEditor(true));
+	vscode.commands.registerCommand('jsonOutline.unlockEditor', () => jsonOutlineProvider.lockEditor(false));
 }

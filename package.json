@@ -1,19 +1,19 @@
 {
-	"name": "json",
-	"displayName": "json",
-	"description": "Json for Visual Studio Code",
-	"version": "2.0.2",
-	"publisher": "ZainChen",
-	"homepage": "https://github.com/ZainChen/vscode-json#readme",
+	"name": "json-pax8",
+	"displayName": "json (PAX8 enhanced)",
+	"description": "Json for Visual Studio Code - PAX8 enhanced",
+	"version": "2.0.4",
+	"publisher": "Hugo Puyol",
+	"homepage": "https://github.com/chaplisimo/vscode-json#readme",
 	"bugs": {
-		"url": "https://github.com/ZainChen/vscode-json/issues"
+		"url": "https://github.com/chaplisimo/vscode-json/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ZainChen/vscode-json"
+		"url": "https://github.com/chaplisimo/vscode-json"
 	},
 	"license": "MIT",
-	"author": "ZainChen <2384439266@qq.com>",
+	"author": "Hugo Puyol <chaplisimo@gmail.com>",
 	"icon": "resources/json-128.png",
 	"categories": [
 		"Extension Packs",
@@ -80,7 +80,7 @@
 			"activitybar": [
 				{
 					"id": "json-views",
-					"title": "json",
+					"title": "json for PAX8",
 					"icon": "./resources/json-500.png"
 				}
 			]
@@ -89,21 +89,31 @@
 			"json-views": [
 				{
 					"id": "jsonOutline",
-					"name": "Please open the json file.(ZainChen)"
+					"name": "Open the json file"
 				}
 			]
 		},
 		"menus": {
 			"view/title": [
 				{
+					"command": "jsonOutline.lockEditor",
+					"when": "view == jsonOutline && !jsonOutlineLockedEditor",
+					"group": "navigation@0"
+				},
+				{
+					"command": "jsonOutline.unlockEditor",
+					"when": "view == jsonOutline && jsonOutlineLockedEditor",
+					"group": "navigation@0"
+				},
+				{
 					"command": "jsonOutline.assignLabel",
 					"when": "view == jsonOutline",
-					"group": "navigation"
+					"group": "navigation@1"
 				},
 				{
 					"command": "jsonOutline.refresh",
 					"when": "view == jsonOutline",
-					"group": "navigation"
+					"group": "navigation@2"
 				}
 			],
 			"view/item/context": [
@@ -145,6 +155,24 @@
 				"icon": {
 					"light": "./resources/light/assignLabel.svg",
 					"dark": "./resources/dark/assignLabel.svg"
+				}
+			},
+			{
+				"command": "jsonOutline.lockEditor",
+				"title": "Lock Editor",
+				"when": "view == jsonOutline && !jsonOutlineLockedEditor",
+				"icon": {
+					"light": "./resources/light/lock-empty-light.svg",
+					"dark": "./resources/dark/lock-empty-dark.svg"
+				}
+			},
+			{
+				"command": "jsonOutline.unlockEditor",
+				"title": "Unlock Editor",
+				"when": "view == jsonOutline && jsonOutlineLockedEditor",
+				"icon": {
+					"light": "./resources/light/lock-full-light.svg",
+					"dark": "./resources/dark/lock-full-dark.svg"
 				}
 			}
 		],
