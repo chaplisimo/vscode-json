@@ -13,6 +13,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
   private editor: vscode.TextEditor;
   private autoRefresh = true;
   private label: string = null;
+  private lockedEditor = false;
 
   constructor(private context: vscode.ExtensionContext) {
     vscode.window.onDidChangeActiveTextEditor(() =>
@@ -29,6 +30,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
         .get("autorefresh");
     });
     this.onActiveEditorChanged();
+    vscode.commands.executeCommand("setContext","jsonOutlineLockedEditor",this.lockedEditor);
   }
 
   refresh(offset?: number): void {
@@ -54,6 +56,12 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
         () => this.refresh(),
         () => this.refresh()
       );
+  }
+
+  lockEditor(lock: boolean): void {
+    this.lockedEditor = lock;
+    //vscode.commands.executeCommand('setContext', 'jsonOutlineLockedEditor', this.lockedEditor);
+    vscode.commands.executeCommand("setContext","jsonOutlineLockedEditor",this.lockedEditor);
   }
 
   rename(offset: number): void {
@@ -102,7 +110,9 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
       vscode.commands.executeCommand("setContext", "jsonOutlineEnabled", false);
     }
     // 切换文件，刷新
-    this.refresh();
+    if (!this.lockedEditor) {
+      this.refresh();
+    }
   }
 
   private onDocumentChanged(changeEvent: vscode.TextDocumentChangeEvent): void {
